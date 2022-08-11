@@ -6,6 +6,8 @@ const galleryMarkup = createGalleryItems(galleryItems);
 
 galleryList.insertAdjacentHTML("beforeend", galleryMarkup);
 
+let lightbox;
+
 function createGalleryItems(images) {
     return images.map(item => {
     return `
@@ -18,20 +20,10 @@ function createGalleryItems(images) {
   </a>
 `;
     }).join("");
+    
 };
 
-let lightbox;
-
-galleryList.addEventListener("click", (event) => {
-    if(!event.target.classList.contains('gallery__image')) {
-        return;
-    };
-
-    event.preventDefault();
-
-    lightbox = new SimpleLightbox('.gallery a', {
-        captionDelay: 250,
-        captionsData: 'alt',
-    });
+lightbox = new SimpleLightbox('.gallery a', {
+    captionDelay: 250,
+    captionsData: 'alt',
 });
-
